@@ -149,6 +149,8 @@ function drawFeaturePoints(canvas, img, face) {
   // See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#Fill_and_stroke_styles
   // <your code here>
   
+  ctx.strokeStyle = 'blue';
+  ctx.fillStyle = 'red';
   // Loop over each feature point in the face
   for (var id in face.featurePoints) {
     var featurePoint = face.featurePoints[id];
@@ -156,6 +158,10 @@ function drawFeaturePoints(canvas, img, face) {
     // TODO: Draw feature point, e.g. as a circle using ctx.arc()
     // See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
     // <your code here>
+    ctx.beginPath();
+    ctx.arc(featurePoint.x,featurePoint.y,1,0,2*MATH.PI);
+    ctx.fill();
+    ctx.stroke();
   }
 }
 

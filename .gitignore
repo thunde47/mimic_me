@@ -1,2 +1,5 @@
 my-ssl-cert.pem
 .DS_Store
+
+#temp files
+*~
