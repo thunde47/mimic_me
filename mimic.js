@@ -159,7 +159,7 @@ function drawFeaturePoints(canvas, img, face) {
     // See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
     // <your code here>
     ctx.beginPath();
-    ctx.arc(featurePoint.x,featurePoint.y,1,0,2*MATH.PI);
+    ctx.arc(featurePoint.x,featurePoint.y,1,0,2*Math.PI);
     ctx.fill();
     ctx.stroke();
   }
