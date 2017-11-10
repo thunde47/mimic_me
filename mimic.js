@@ -75,6 +75,7 @@ function onReset() {
 
   // TODO(optional): You can restart the game as well
   // <your code here>
+  resetGame();
 };
 
 // Add a callback to notify when camera access is allowed
@@ -134,6 +135,7 @@ detector.addEventListener("onImageResultsSuccess", function(faces, image, timest
 
     // TODO: Call your function to run the game (define it first!)
     // <your code here>
+    playGame(canvas, image, faces[0]);
   }
 });
 
@@ -172,7 +174,7 @@ function drawEmoji(canvas, img, face) {
 
   // TODO: Set the font and style you want for the emoji
   // <your code here>
-  ctx.font = '24px sans-serif';
+  ctx.font = '48px sans-serif';
   // TODO: Draw it using ctx.strokeText() or fillText()
   // See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText
   // TIP: Pick a particular feature point as an anchor so that the emoji sticks to your face
@@ -195,3 +197,41 @@ function drawEmoji(canvas, img, face) {
 // - Define a game reset function (same as init?), and call it from the onReset() function above
 
 // <your code here>
+var winScore = 0;
+var totalScore = 0;
+var timer = null;
+var targetEmoji = null;
+
+function generateEmoji(){
+  var emojiIndex = Math.floor(Math.random() * emojis.length)
+  targetEmoji = emojis[emojiIndex]
+  setTargetEmoji(targetEmoji);
+  totalScore+=1;
+  setScore(winScore,totalScore); 
+  resetTimer();
+}
+function playGame(canvas, image, face){
+  if (targetEmoji == null){
+    resetGame();
+  }
+
+  
+  var imitatedEmoji = toUnicode(face.emojis.dominantEmoji);
+  if (imitatedEmoji == targetEmoji){
+    winScore+=1;
+    generateEmoji();
+  } 
+}      
+
+function resetGame() {
+  generateEmoji();
+  winScore = 0;
+  totalScore = 0;
+  setScore(winScore, totalScore);
+}
+
+function resetTimer(){
+  clearTimeout(timer);
+  timer=null;
+  timer = setTimeout(generateEmoji, 10000);
+}
