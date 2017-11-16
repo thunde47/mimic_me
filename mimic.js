@@ -233,5 +233,5 @@ function resetGame() {
 function resetTimer(){
   clearTimeout(timer);
   timer=null;
-  timer = setTimeout(generateEmoji, 10000);
+  timer = setTimeout(generateEmoji, 8000);
 }
